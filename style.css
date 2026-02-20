@@ -378,10 +378,16 @@ body.cursor-hover #cursorInner { width: 6px; height: 6px; background: var(--blue
 }
 
 .hero-name {
-  font-family: var(--font-display);
-  font-size: clamp(4rem, 11vw, 10rem);
-  font-weight: 800; line-height: 0.9;
-  margin-bottom: 1.2rem;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(56px, 10vw, 140px); /* responsive huge text */
+  line-height: 0.9;
+  letter-spacing: -2px;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;   /* IMPORTANT */
+  white-space: nowrap; /* keeps full name in one line */
 }
 .hn-first { display: block; color: var(--text); }
 .hn-last {
