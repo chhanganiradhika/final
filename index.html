@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Radhika Chhangani — Legendary Portfolio</title>
+  <meta name="description" content="Radhika Chhangani — CS Student, General Secretary, Tech Committee Head. Building real projects and leading with power."/>
+  <meta name="keywords" content="Radhika Chhangani, portfolio, software engineer, CS student, tech leader, general secretary"/>
+  <meta property="og:title" content="Radhika Chhangani — Legendary Portfolio"/>
+  <meta property="og:description" content="Building projects, leading teams, and evolving into a software engineer who creates meaningful impact."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Cabinet+Grotesk:wght@300;400;500;700;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <canvas id="preCanvas"></canvas>
+  <div class="pre-content">
+    <div class="pre-ring"></div>
+    <div class="pre-ring r2"></div>
+    <div class="pre-ring r3"></div>
+    <div class="pre-tagline">INITIALIZING POWER</div>
+    <div class="pre-bar-wrap"><div class="pre-bar"></div></div>
+    <div class="pre-pct" id="prePct">0%</div>
+  </div>
+</div>
+
+<!-- CURSOR -->
+<div id="cursorOuter"></div>
+<div id="cursorInner"></div>
+<canvas id="trailCanvas"></canvas>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand">RC<span class="brand-dot">⚡</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#leadership">Leadership</a></li>
+      <li><a href="#achievements">Wins</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="ham" id="ham" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mob-nav" id="mobNav">
+  <a href="#about" class="mob-link">About</a>
+  <a href="#skills" class="mob-link">Skills</a>
+  <a href="#projects" class="mob-link">Projects</a>
+  <a href="#leadership" class="mob-link">Leadership</a>
+  <a href="#achievements" class="mob-link">Wins</a>
+  <a href="#contact" class="mob-link">Contact</a>
+</div>
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<section id="hero">
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-orbs">
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+    <div class="orb o4"></div>
+    <div class="orb o5"></div>
+  </div>
+
+  <div class="hero-awakening" id="awakening">
+    <p class="awaken-word" id="aw1">POWER.</p>
+    <p class="awaken-word" id="aw2">LEADERSHIP.</p>
+    <p class="awaken-word" id="aw3">CREATION.</p>
+  </div>
+
+  <div class="hero-main" id="heroMain">
+    <div class="hero-chip">⚡ CS Student · Tech Leader · Builder</div>
+    <h1 class="hero-name" id="heroName">
+      <span class="hn-first">Radhika</span>
+      <span class="hn-last">Chhangani</span>
+    </h1>
+    <p class="hero-roles">
+      Computer Science Student
+      <span class="separator">•</span>
+      General Secretary
+      <span class="separator">•</span>
+      Tech Committee Head
+    </p>
+    <p class="hero-sub">Building projects, leading teams, and evolving into a software engineer<br/>who creates <em>meaningful impact</em>.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-energy">
+        <span class="btn-glow"></span>
+        <span class="btn-label">⚡ Enter Portfolio</span>
+      </a>
+      <a href="#projects" class="btn-ghost">
+        <span class="btn-label">View Projects →</span>
+      </a>
+    </div>
+    <div class="hero-scroll-hint">
+      <div class="scroll-orb"></div>
+      <span>Scroll to explore</span>
+    </div>
+  </div>
+
+  <div class="hero-floaters" aria-hidden="true">
+    <div class="hf hf1">HTML</div>
+    <div class="hf hf2">Python</div>
+    <div class="hf hf3">C++</div>
+    <div class="hf hf4">Leader</div>
+    <div class="hf hf5">JS</div>
+    <div class="hf hf6">Git</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ ABOUT ═══════════════════════════════ -->
+<section id="about">
+  <div class="section-bg about-bg"></div>
+  <div class="container">
+    <div class="section-eyebrow reveal">01 — THE FORCE BEHIND</div>
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="av-frame">
+          <div class="av-inner">
+            <span class="av-initials">RC</span>
+            <div class="av-rings">
+              <div class="av-ring ar1"></div>
+              <div class="av-ring ar2"></div>
+              <div class="av-ring ar3"></div>
+            </div>
+          </div>
+          <div class="av-badge av-b1">⚡ Builder</div>
+          <div class="av-badge av-b2">👑 Leader</div>
+          <div class="av-badge av-b3">💡 Creator</div>
+        </div>
+        <div class="about-numbers">
+          <div class="an-card reveal">
+            <span class="an-val" data-target="2">0</span><span class="an-unit">+</span>
+            <span class="an-label">Years Coding</span>
+          </div>
+          <div class="an-card reveal">
+            <span class="an-val" data-target="10">0</span><span class="an-unit">+</span>
+            <span class="an-label">Projects</span>
+          </div>
+          <div class="an-card reveal">
+            <span class="an-val" data-target="500">0</span><span class="an-unit">+</span>
+            <span class="an-label">Team Hours</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-copy reveal">
+        <h2 class="section-h2">Real Story.<br/><em>Unstoppable Growth.</em></h2>
+        <p>I'm a Computer Science student who believes leadership and technology together can create real impact.</p>
+        <p>Serving as the <strong>General Secretary</strong> and heading the <strong>Tech Committee</strong> of my college, I've learned how to manage teams, organize events, and take responsibility beyond academics.</p>
+        <p>My focus is on building practical projects, improving my technical skills, and growing into a software engineer capable of solving meaningful problems.</p>
+        <div class="about-pills">
+          <span class="pill p-blue">Developer</span>
+          <span class="pill p-pink">Leader</span>
+          <span class="pill p-teal">Problem Solver</span>
+          <span class="pill p-purple">Team Player</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ SKILLS ═══════════════════════════════ -->
+<section id="skills">
+  <div class="section-bg skills-bg"></div>
+  <div class="container">
+    <div class="section-eyebrow reveal">02 — POWER MATRIX</div>
+    <h2 class="section-h2 reveal">What I <em>Command</em></h2>
+    <div class="skills-universe reveal">
+      <!-- Language Skills -->
+      <div class="skill-core sc-html" data-skill="HTML">
+        <div class="sc-pulse"></div>
+        <div class="sc-icon">⟨/⟩</div>
+        <div class="sc-name">HTML</div>
+        <div class="sc-ring"></div>
+      </div>
+      <div class="skill-core sc-css" data-skill="CSS">
+        <div class="sc-pulse"></div>
+        <div class="sc-icon">✦</div>
+        <div class="sc-name">CSS</div>
+        <div class="sc-ring"></div>
+      </div>
+      <div class="skill-core sc-js" data-skill="JavaScript">
+        <div class="sc-pulse"></div>
+        <div class="sc-icon">JS</div>
+        <div class="sc-name">JavaScript</div>
+        <div class="sc-ring"></div>
+      </div>
+      <div class="skill-core sc-py" data-skill="Python">
+        <div class="sc-pulse"></div>
+        <div class="sc-icon">🐍</div>
+        <div class="sc-name">Python</div>
+        <div class="sc-ring"></div>
+      </div>
+      <div class="skill-core sc-cpp" data-skill="C++">
+        <div class="sc-pulse"></div>
+        <div class="sc-icon">C++</div>
+        <div class="sc-name">C++</div>
+        <div class="sc-ring"></div>
+      </div>
+      <div class="skill-core sc-git" data-skill="Git">
+        <div class="sc-pulse"></div>
+        <div class="sc-icon">⌥</div>
+        <div class="sc-name">Git & GitHub</div>
+        <div class="sc-ring"></div>
+      </div>
+      <div class="skill-core sc-ps" data-skill="Problem Solving">
+        <div class="sc-pulse"></div>
+        <div class="sc-icon">◈</div>
+        <div class="sc-name">Problem Solving</div>
+        <div class="sc-ring"></div>
+      </div>
+      <div class="skill-core sc-lead" data-skill="Leadership">
+        <div class="sc-pulse"></div>
+        <div class="sc-icon">👑</div>
+        <div class="sc-name">Leadership</div>
+        <div class="sc-ring"></div>
+      </div>
+      <div class="skill-core sc-tm" data-skill="Team Mgmt">
+        <div class="sc-pulse"></div>
+        <div class="sc-icon">◉</div>
+        <div class="sc-name">Team Mgmt</div>
+        <div class="sc-ring"></div>
+      </div>
+    </div>
+    <div class="skills-legend reveal">
+      <span class="sl-item"><span class="sl-dot" style="background:var(--blue)"></span>Languages</span>
+      <span class="sl-item"><span class="sl-dot" style="background:var(--pink)"></span>Tools</span>
+      <span class="sl-item"><span class="sl-dot" style="background:var(--teal)"></span>Soft Skills</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PROJECTS ═══════════════════════════════ -->
+<section id="projects">
+  <div class="section-bg projects-bg"></div>
+  <div class="container">
+    <div class="section-eyebrow reveal">03 — CREATION ARENA</div>
+    <h2 class="section-h2 reveal">Things I've <em>Manifested</em></h2>
+    <p class="section-intro reveal">These projects represent my evolution as a developer and my approach to building real solutions through code.</p>
+    <div class="projects-grid">
+
+      <div class="pj-card reveal" data-color="blue">
+        <div class="pj-visual pv1">
+          <div class="pj-icon-big">⟨/⟩</div>
+          <div class="pj-ripple"></div>
+        </div>
+        <div class="pj-info">
+          <span class="pj-tag">Web Development</span>
+          <h3>Portfolio Website</h3>
+          <p>A fully responsive personal portfolio with smooth animations, modern glassmorphism design, and cinematic hero effects. Built to impress.</p>
+          <div class="pj-stack">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+          <div class="pj-actions">
+            <a href="#" class="pj-btn" target="_blank">Live Demo ↗</a>
+            <a href="#" class="pj-btn pj-ghost" target="_blank">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pj-card reveal" data-color="purple">
+        <div class="pj-visual pv2">
+          <div class="pj-icon-big">◈</div>
+          <div class="pj-ripple"></div>
+        </div>
+        <div class="pj-info">
+          <span class="pj-tag">Algorithm Viz</span>
+          <h3>Algorithm Visualizer</h3>
+          <p>Interactive tool that brings sorting and searching algorithms to life with real-time step-by-step visualizations. Makes CS intuitive.</p>
+          <div class="pj-stack">
+            <span>Python</span><span>JavaScript</span>
+          </div>
+          <div class="pj-actions">
+            <a href="#" class="pj-btn" target="_blank">Live Demo ↗</a>
+            <a href="#" class="pj-btn pj-ghost" target="_blank">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pj-card reveal" data-color="teal">
+        <div class="pj-visual pv3">
+          <div class="pj-icon-big">⚡</div>
+          <div class="pj-ripple"></div>
+        </div>
+        <div class="pj-info">
+          <span class="pj-tag">Full Stack</span>
+          <h3>Event Management System</h3>
+          <p>Built for college events — live registrations, real-time schedules, team coordination. Used during actual college fest. Real impact.</p>
+          <div class="pj-stack">
+            <span>Node.js</span><span>MongoDB</span><span>Express</span>
+          </div>
+          <div class="pj-actions">
+            <a href="#" class="pj-btn" target="_blank">Live Demo ↗</a>
+            <a href="#" class="pj-btn pj-ghost" target="_blank">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="projects-cta reveal">
+      <a href="https://github.com" target="_blank" class="btn-energy">
+        <span class="btn-glow"></span>
+        <span class="btn-label">Explore All on GitHub →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ LEADERSHIP ═══════════════════════════════ -->
+<section id="leadership">
+  <div class="section-bg lead-bg"></div>
+  <div class="container">
+    <div class="section-eyebrow reveal">04 — COMMAND ZONE</div>
+    <h2 class="section-h2 reveal">Beyond the <em>Classroom</em></h2>
+    <div class="command-grid">
+
+      <div class="cmd-item reveal">
+        <div class="cmd-indicator">
+          <div class="cmd-dot"></div>
+          <div class="cmd-beam"></div>
+        </div>
+        <div class="cmd-card">
+          <div class="cmd-status">ACTIVE</div>
+          <div class="cmd-icon">👑</div>
+          <h3>General Secretary</h3>
+          <p>Representing student interests, coordinating with faculty, and ensuring smooth academic and cultural operations across the entire institution.</p>
+          <div class="cmd-tags"><span>Institution-Wide</span><span>Student Rep</span></div>
+        </div>
+      </div>
+
+      <div class="cmd-item reveal">
+        <div class="cmd-indicator">
+          <div class="cmd-dot"></div>
+          <div class="cmd-beam"></div>
+        </div>
+        <div class="cmd-card">
+          <div class="cmd-status">ACTIVE</div>
+          <div class="cmd-icon">⚡</div>
+          <h3>Head — Tech Committee</h3>
+          <p>Leading a team of developers, planning tech initiatives, conducting workshops, and driving digital solutions for college-wide needs.</p>
+          <div class="cmd-tags"><span>Tech Lead</span><span>Workshop Host</span></div>
+        </div>
+      </div>
+
+      <div class="cmd-item reveal">
+        <div class="cmd-indicator">
+          <div class="cmd-dot"></div>
+          <div class="cmd-beam"></div>
+        </div>
+        <div class="cmd-card">
+          <div class="cmd-status">DELIVERED</div>
+          <div class="cmd-icon">🎯</div>
+          <h3>Event Organizer</h3>
+          <p>Organized and managed major college events — fests, seminars, technical competitions. Handled logistics, budgets, and execution end-to-end.</p>
+          <div class="cmd-tags"><span>Project Mgmt</span><span>Logistics</span></div>
+        </div>
+      </div>
+
+      <div class="cmd-item reveal">
+        <div class="cmd-indicator">
+          <div class="cmd-dot"></div>
+        </div>
+        <div class="cmd-card">
+          <div class="cmd-status">ONGOING</div>
+          <div class="cmd-icon">🤝</div>
+          <h3>Cross-team Coordinator</h3>
+          <p>Coordinated diverse teams across departments — delegating, maintaining communication, and ensuring every initiative landed on time.</p>
+          <div class="cmd-tags"><span>Cross-functional</span><span>Delegation</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ ACHIEVEMENTS ═══════════════════════════════ -->
+<section id="achievements">
+  <div class="section-bg ach-bg"></div>
+  <div class="container">
+    <div class="section-eyebrow reveal">05 — LEVEL UNLOCKED</div>
+    <h2 class="section-h2 reveal">Wins & <em>Milestones</em></h2>
+    <div class="ach-grid">
+      <div class="ach-card reveal" data-color="blue">
+        <div class="ach-glow"></div>
+        <div class="ach-icon">🏛️</div>
+        <div class="ach-title">General Secretary</div>
+        <div class="ach-sub">Elected to the highest student body position in college</div>
+        <div class="ach-badge">UNLOCKED</div>
+      </div>
+      <div class="ach-card reveal" data-color="purple">
+        <div class="ach-glow"></div>
+        <div class="ach-icon">⚡</div>
+        <div class="ach-title">Tech Committee Head</div>
+        <div class="ach-sub">Leading all technical initiatives across the college</div>
+        <div class="ach-badge">UNLOCKED</div>
+      </div>
+      <div class="ach-card reveal" data-color="pink">
+        <div class="ach-glow"></div>
+        <div class="ach-icon">🎪</div>
+        <div class="ach-title">College Fest Organizer</div>
+        <div class="ach-sub">Successfully organized major events from concept to execution</div>
+        <div class="ach-badge">UNLOCKED</div>
+      </div>
+      <div class="ach-card reveal" data-color="teal">
+        <div class="ach-glow"></div>
+        <div class="ach-icon">💻</div>
+        <div class="ach-title">10+ Projects Built</div>
+        <div class="ach-sub">Real projects deployed and used by actual users</div>
+        <div class="ach-badge">UNLOCKED</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ CONTACT ═══════════════════════════════ -->
+<section id="contact">
+  <div class="section-bg contact-bg"></div>
+  <div class="container">
+    <div class="section-eyebrow reveal">06 — INITIATE CONNECTION</div>
+    <h2 class="section-h2 reveal">Let's <em>Build Together</em></h2>
+    <p class="section-intro reveal">Open to collaboration, learning opportunities, and meaningful conversations about technology and leadership.</p>
+
+    <div class="contact-grid">
+      <div class="contact-links reveal">
+        <a href="mailto:radhika@example.com" class="cl-item">
+          <div class="cli-icon">✉</div>
+          <div class="cli-info">
+            <span class="cli-label">Email</span>
+            <span class="cli-val">radhika@example.com</span>
+          </div>
+          <span class="cli-arrow">↗</span>
+        </a>
+        <a href="https://linkedin.com" target="_blank" class="cl-item">
+          <div class="cli-icon">in</div>
+          <div class="cli-info">
+            <span class="cli-label">LinkedIn</span>
+            <span class="cli-val">linkedin.com/in/radhika</span>
+          </div>
+          <span class="cli-arrow">↗</span>
+        </a>
+        <a href="https://github.com" target="_blank" class="cl-item">
+          <div class="cli-icon">⌥</div>
+          <div class="cli-info">
+            <span class="cli-label">GitHub</span>
+            <span class="cli-val">github.com/radhika</span>
+          </div>
+          <span class="cli-arrow">↗</span>
+        </a>
+        <div class="contact-status">
+          <div class="cs-dot"></div>
+          <span>Open to opportunities & collaboration</span>
+        </div>
+      </div>
+
+      <form class="contact-form reveal" id="contactForm" novalidate>
+        <div class="cf-row">
+          <div class="cf-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Arjun Sharma" required/>
+          </div>
+          <div class="cf-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="arjun@email.com" required/>
+          </div>
+        </div>
+        <div class="cf-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" placeholder="Let's collaborate on something amazing" required/>
+        </div>
+        <div class="cf-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Tell me your idea..." required></textarea>
+        </div>
+        <button type="submit" class="btn-energy submit-btn" id="submitBtn">
+          <span class="btn-glow"></span>
+          <span class="btn-label" id="btnLabel">⚡ Send Message</span>
+        </button>
+        <div class="form-msg" id="formMsg"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-logo">RC<span class="brand-dot">⚡</span></span>
+    <p class="footer-copy">© 2025 Radhika Chhangani — Built with ambition & energy.</p>
+    <a href="#hero" class="footer-top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
