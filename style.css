@@ -50,7 +50,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; -webkit-text-size-adjust: 100%; }
 
 body {
   font-family: var(--font-body);
@@ -58,6 +58,10 @@ body {
   color: var(--text);
   overflow-x: hidden;
   cursor: none;
+  -webkit-overflow-scrolling: touch;
+  /* Safe area for iPhone X+ notch */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 /* ---- SELECTION ---- */
@@ -130,65 +134,7 @@ body {
   font-family: var(--font-mono); font-size: 1.5rem; font-weight: 500;
   background: var(--grad-energy); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
-/* ================= RESPONSIVE FIX ================= */
 
-/* TABLET */
-@media (max-width: 1024px) {
-
-  .hero-name {
-    font-size: clamp(42px, 9vw, 90px);
-    text-align: center;
-  }
-
-  .container {
-    padding: 0 4vw;
-  }
-
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-
-  .nav-links {
-    display: none;
-  }
-
-  .hero-name {
-    font-size: clamp(34px, 12vw, 60px);
-  }
-
-  .hero-roles {
-    font-size: 14px;
-    text-align: center;
-  }
-
-  .hero-btns {
-    flex-direction: column;
-    gap: 12px;
-    align-items: center;
-  }
-
-  .about-grid,
-  .command-grid,
-  .projects-grid,
-  .ach-grid {
-    grid-template-columns: 1fr;
-  }
-
-}
-
-/* SMALL PHONES */
-@media (max-width: 480px) {
-
-  .hero-name {
-    font-size: 30px;
-  }
-
-  .section-h2 {
-    font-size: 28px;
-  }
-
-}
 /* ============================================================
    CURSOR
    ============================================================ */
@@ -436,16 +382,10 @@ body.cursor-hover #cursorInner { width: 6px; height: 6px; background: var(--blue
 }
 
 .hero-name {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: clamp(56px, 10vw, 140px); /* responsive huge text */
-  line-height: 0.9;
-  letter-spacing: -2px;
-  margin: 0;
-  width: 100%;
-  max-width: 100%;
-  overflow: visible;   /* IMPORTANT */
-  white-space: nowrap; /* keeps full name in one line */
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 11vw, 10rem);
+  font-weight: 800; line-height: 0.9;
+  margin-bottom: 1.2rem;
 }
 .hn-first { display: block; color: var(--text); }
 .hn-last {
@@ -909,7 +849,9 @@ input:focus, textarea:focus {
    FOOTER
    ============================================================ */
 footer {
-  background: var(--text); padding: 2.5rem;
+  background: var(--text);
+  padding: 2.5rem;
+  padding-bottom: calc(2.5rem + env(safe-area-inset-bottom));
 }
 .footer-inner {
   max-width: 1200px; margin: 0 auto;
@@ -926,23 +868,202 @@ footer {
 .footer-top:hover { color: var(--blue-l); }
 
 /* ============================================================
-   RESPONSIVE
+   RESPONSIVE — ALL DEVICES
+   Large Tablet (1024px) · Tablet (768px) · Mobile (480px) · Small (360px)
    ============================================================ */
+
+/* ── LARGE TABLET / SMALL LAPTOP (max 1100px) ── */
+@media (max-width: 1100px) {
+  .container { padding: 100px 1.75rem; }
+  .hero-name { font-size: clamp(3rem, 9vw, 7rem); }
+  .about-grid { gap: 3rem; }
+  .av-frame { width: 280px; }
+  .skills-universe { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .command-grid { grid-template-columns: repeat(2, 1fr); }
+  .ach-grid { grid-template-columns: repeat(2, 1fr); }
+  .hf3, .hf5, .hf6 { display: none; }
+}
+
+/* ── TABLET (max 900px) — iPad, Android Tablet ── */
 @media (max-width: 900px) {
+  /* NAV */
   .nav-links { display: none; }
   .ham { display: flex; }
-  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .av-frame { width: 100%; height: 260px; }
-  .contact-grid { grid-template-columns: 1fr; }
+
+  /* HERO */
+  #hero { padding: 0 1.5rem; min-height: 100svh; }
+  .hero-main { padding-top: 90px; }
+  .hero-chip { font-size: 0.72rem; }
+  .hero-name { font-size: clamp(2.8rem, 8vw, 5rem); line-height: 1; }
+  .hero-roles { font-size: 0.78rem; }
+  .hero-sub { font-size: 1rem; max-width: 100%; }
+  .hero-btns { flex-wrap: wrap; gap: 0.75rem; }
   .hero-floaters { display: none; }
+  .hero-scroll-hint { display: none; }
+
+  /* AWAKENING */
+  .awaken-word { font-size: clamp(2.5rem, 8vw, 6rem); }
+
+  /* ABOUT */
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .about-visual { display: flex; flex-direction: column; align-items: center; }
+  .av-frame { width: 100%; max-width: 340px; height: 280px; }
+  .about-numbers { justify-content: center; }
+  .about-copy { text-align: left; }
+
+  /* SKILLS */
+  .skills-universe { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+
+  /* PROJECTS */
+  .projects-grid { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; }
+
+  /* LEADERSHIP */
+  .command-grid { grid-template-columns: 1fr; }
+  .cmd-item { flex-direction: row; }
+
+  /* ACHIEVEMENTS */
+  .ach-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* CONTACT */
+  .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+  /* SECTION */
+  .container { padding: 90px 1.5rem; }
+  .section-h2 { font-size: clamp(2rem, 6vw, 3rem); }
 }
+
+/* ── MOBILE LARGE (max 640px) — Large phones, small tablets ── */
 @media (max-width: 640px) {
-  .cf-row { grid-template-columns: 1fr; }
-  .container { padding: 80px 1.25rem; }
-  .hero-name { font-size: 3rem; }
-  .projects-grid { grid-template-columns: 1fr; }
-  .ach-grid { grid-template-columns: 1fr 1fr; }
+  /* CONTAINER */
+  .container { padding: 75px 1.25rem; }
+
+  /* NAV */
+  #navbar { padding: 0 1.25rem; }
+  .nav-inner { height: 60px; }
+  .nav-brand { font-size: 1.25rem; }
+
+  /* HERO */
+  #hero { padding: 0 1.25rem; }
+  .hero-main { padding-top: 75px; }
+  .hero-chip { font-size: 0.68rem; padding: 0.35rem 0.9rem; }
+  .hero-name { font-size: clamp(2.2rem, 10vw, 3.5rem); margin-bottom: 1rem; }
+  .hn-first { font-size: inherit; }
+  .hn-last { font-size: inherit; }
+  .hero-roles {
+    font-size: 0.7rem; display: flex;
+    flex-direction: column; gap: 0.2rem; align-items: flex-start;
+  }
+  .separator { display: none; }
+  .hero-sub { font-size: 0.92rem; margin-bottom: 2rem; }
+  .btn-energy, .btn-ghost { padding: 0.75rem 1.5rem; font-size: 0.85rem; }
+  .hero-btns { gap: 0.6rem; }
+
+  /* AWAKENING */
+  .awaken-word { font-size: clamp(2rem, 10vw, 4rem); }
+
+  /* ABOUT */
+  .av-frame { height: 240px; }
+  .av-badge { font-size: 0.65rem; padding: 0.3rem 0.7rem; }
+  .av-b1 { right: -5px; top: -8px; }
+  .av-b2 { right: -5px; bottom: 30px; }
+  .av-b3 { left: -5px; bottom: -8px; }
+  .about-numbers { flex-wrap: wrap; gap: 0.75rem; }
+  .an-card { min-width: 80px; padding: 0.85rem 0.5rem; }
+  .an-val { font-size: 1.5rem; }
+  .about-copy p { font-size: 0.95rem; }
+  .about-pills { gap: 0.5rem; }
+  .pill { font-size: 0.75rem; padding: 0.35rem 0.85rem; }
+
+  /* SECTION TITLES */
+  .section-h2 { font-size: clamp(1.8rem, 7vw, 2.5rem); margin-bottom: 1rem; }
+  .section-intro { font-size: 0.95rem; margin-bottom: 2rem; }
+
+  /* SKILLS */
+  .skills-universe { grid-template-columns: repeat(2, 1fr); gap: 0.85rem; }
+  .skill-core { padding: 1.5rem 0.75rem; border-radius: 16px; }
+  .sc-icon { font-size: 1.4rem; }
+  .sc-name { font-size: 0.78rem; }
+  .skills-legend { flex-wrap: wrap; gap: 1rem; }
+
+  /* PROJECTS */
+  .projects-grid { grid-template-columns: 1fr; max-width: 100%; }
+  .pj-visual { height: 180px; }
+  .pj-icon-big { font-size: 3rem; }
+  .pj-info { padding: 1.25rem; }
+  .pj-info h3 { font-size: 1.2rem; }
+  .pj-actions { flex-wrap: wrap; gap: 0.5rem; }
+
+  /* LEADERSHIP */
+  .cmd-card { padding: 1.25rem; }
+  .cmd-card h3 { font-size: 1.05rem; }
+
+  /* ACHIEVEMENTS */
+  .ach-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .ach-card { padding: 1.75rem 1.25rem; border-radius: 18px; }
+  .ach-icon { font-size: 2rem; }
+  .ach-title { font-size: 0.95rem; }
+  .ach-sub { font-size: 0.78rem; }
+
+  /* CONTACT */
+  .cf-row { grid-template-columns: 1fr; gap: 1rem; }
+  .contact-form { gap: 1rem; }
+  .cl-item { padding: 1rem; }
+  .cli-icon { width: 38px; height: 38px; font-size: 0.9rem; }
+  .cli-val { font-size: 0.82rem; }
+  .submit-btn { width: 100%; justify-content: center; }
+
+  /* FOOTER */
+  footer { padding: 2rem 1.25rem; }
+  .footer-inner { flex-direction: column; text-align: center; gap: 0.5rem; }
+
+  /* MOBILE NAV */
+  .mob-nav .mob-link { font-size: 2rem; }
 }
-@media (max-width: 400px) {
+
+/* ── MOBILE SMALL (max 420px) — iPhone SE, small Android ── */
+@media (max-width: 420px) {
+  .container { padding: 65px 1rem; }
+  .hero-name { font-size: clamp(1.9rem, 11vw, 2.8rem); }
+  .hero-main { padding-top: 70px; }
+  .skills-universe { grid-template-columns: repeat(2, 1fr); gap: 0.7rem; }
+  .skill-core { padding: 1.2rem 0.6rem; }
   .ach-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .pj-visual { height: 160px; }
+  .section-h2 { font-size: 1.7rem; }
+  .btn-energy, .btn-ghost { width: 100%; justify-content: center; font-size: 0.82rem; }
+  .hero-btns { flex-direction: column; gap: 0.6rem; width: 100%; max-width: 280px; }
+  .an-card { flex: 0 0 calc(33% - 0.5rem); }
+  .av-frame { height: 210px; }
+  .mob-nav .mob-link { font-size: 1.7rem; }
+  .cmd-item { flex-direction: column; gap: 0.5rem; }
+  .cmd-indicator { flex-direction: row; padding-top: 0; padding-left: 0; }
+  .cmd-beam { display: none; }
+}
+
+/* ── LANDSCAPE MOBILE ── */
+@media (max-height: 500px) and (orientation: landscape) {
+  #hero { min-height: 100%; padding-top: 70px; padding-bottom: 40px; }
+  .hero-name { font-size: 2.5rem; margin-bottom: 0.5rem; }
+  .hero-sub { display: none; }
+  .hero-btns { margin-bottom: 1rem; }
+  .preloader .pre-ring, .preloader .pre-ring.r2, .preloader .pre-ring.r3 { display: none; }
+}
+
+/* ── HOVER-CAPABLE DEVICES ONLY (disable hover effects on touch) ── */
+@media (hover: none) {
+  .pj-card:hover, .ach-card:hover, .an-card:hover,
+  .skill-core:hover, .cmd-card:hover, .cl-item:hover { transform: none; }
+  .pj-card:hover .pj-ripple { opacity: 0; }
+  #cursorOuter, #cursorInner, #trailCanvas { display: none !important; }
+  body { cursor: auto !important; }
+  a, button { cursor: pointer !important; }
+}
+
+/* ── VERY LARGE SCREENS (min 1400px) ── */
+@media (min-width: 1400px) {
+  .container { padding: 130px 2rem; }
+  .hero-name { font-size: 11rem; }
+  .section-h2 { font-size: 4.2rem; }
 }
