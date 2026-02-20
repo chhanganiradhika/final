@@ -344,24 +344,6 @@
 
 
   /* ════════════════════════════════════
-     3D CARD TILT
-  ════════════════════════════════════ */
-  document.querySelectorAll(".pj-card, .ach-card, .an-card, .cmd-card").forEach(card => {
-    card.addEventListener("mousemove", (e) => {
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top) / r.height - 0.5;
-      card.style.transform = `translateY(-8px) rotateX(${-y * 8}deg) rotateY(${x * 8}deg)`;
-      card.style.transition = "transform 0.1s ease";
-    });
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = "";
-      card.style.transition = "transform 0.4s ease";
-    });
-  });
-
-
-  /* ════════════════════════════════════
      SKILL CORE ENERGY PULSE
   ════════════════════════════════════ */
   document.querySelectorAll(".skill-core").forEach(sc => {
@@ -403,43 +385,122 @@
 
 
   /* ════════════════════════════════════
-     CONTACT FORM
+     CONTACT FORM — WITH FALLBACK
   ════════════════════════════════════ */
   const form = document.getElementById("contactForm");
   const formMsg = document.getElementById("formMsg");
   const btnLabel = document.getElementById("btnLabel");
 
+  // Simple client-side validation
+  function validateForm(data) {
+    if (!data.name || data.name.trim().length < 2) return "Please enter your name (min 2 characters).";
+    if (!data.email || !/^\S+@\S+\.\S+$/.test(data.email)) return "Please enter a valid email address.";
+    if (!data.subject || data.subject.trim().length < 3) return "Please enter a subject (min 3 characters).";
+    if (!data.message || data.message.trim().length < 10) return "Please enter a message (min 10 characters).";
+    return null;
+  }
+
+  function showMsg(text, type) {
+    if (!formMsg) return;
+    formMsg.textContent = text;
+    formMsg.className = "form-msg " + type;
+    setTimeout(() => { formMsg.textContent = ""; formMsg.className = "form-msg"; }, 6000);
+  }
+
   if (form) {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      if (btnLabel) btnLabel.textContent = "⏳ Sending...";
+
       const data = {
-        name: form.name.value,
-        email: form.email.value,
-        subject: form.subject.value,
-        message: form.message.value,
+        name:    (form.elements["name"]?.value    || "").trim(),
+        email:   (form.elements["email"]?.value   || "").trim(),
+        subject: (form.elements["subject"]?.value || "").trim(),
+        message: (form.elements["message"]?.value || "").trim(),
       };
-      try {
-        const res = await fetch("/api/contact", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        });
-        const json = await res.json();
-        if (res.ok && json.success) {
-          formMsg.textContent = "⚡ Message sent! I'll get back to you soon.";
-          formMsg.className = "form-msg ok";
-          form.reset();
-        } else {
-          throw new Error(json.message || "Something went wrong.");
+
+      // Client validation first
+      const validationError = validateForm(data);
+      if (validationError) { showMsg("⚠ " + validationError, "err"); return; }
+
+      // Show loading state
+      if (btnLabel) btnLabel.textContent = "⏳ Sending...";
+      const submitBtn = document.getElementById("submitBtn");
+      if (submitBtn) submitBtn.disabled = true;
+
+      // Check if we're on a real server (not file://) before trying API
+      const isLocalFile = window.location.protocol === "file:";
+
+      if (isLocalFile) {
+        // Running without backend — simulate success + open mailto as fallback
+        await new Promise(r => setTimeout(r, 1200)); // simulate delay
+        showMsg("⚡ Message recorded! Since no server is running, opening your email app as backup.", "ok");
+        form.reset();
+        // Open mailto as fallback
+        const mailto = `mailto:radhika@example.com?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\n\n${data.message}`)}`;
+        setTimeout(() => window.open(mailto, "_self"), 1500);
+      } else {
+        // Try the real backend API
+        try {
+          const controller = new AbortController();
+          const timeout = setTimeout(() => controller.abort(), 10000); // 10s timeout
+
+          const res = await fetch("/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+            signal: controller.signal,
+          });
+          clearTimeout(timeout);
+
+          let json = {};
+          try { json = await res.json(); } catch (_) {}
+
+          if (res.ok && json.success) {
+            showMsg("⚡ Message sent! I'll get back to you soon.", "ok");
+            form.reset();
+          } else {
+            throw new Error(json.message || `Server error (${res.status}). Please email directly.`);
+          }
+        } catch (err) {
+          if (err.name === "AbortError") {
+            showMsg("⏱ Request timed out. Please try emailing directly.", "err");
+          } else if (!navigator.onLine) {
+            showMsg("📡 No internet connection. Please check your network.", "err");
+          } else if (err.message.includes("Failed to fetch") || err.message.includes("NetworkError")) {
+            // Backend not running — fallback to mailto
+            showMsg("⚡ Backend not running — opening your email app instead!", "ok");
+            const mailto = `mailto:radhika@example.com?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\n\n${data.message}`)}`;
+            setTimeout(() => window.open(mailto, "_self"), 1200);
+            form.reset();
+          } else {
+            showMsg("✗ " + err.message, "err");
+          }
         }
-      } catch (err) {
-        formMsg.textContent = "✗ " + (err.message || "Failed. Please email directly.");
-        formMsg.className = "form-msg err";
-      } finally {
-        if (btnLabel) btnLabel.textContent = "⚡ Send Message";
-        setTimeout(() => { formMsg.textContent = ""; formMsg.className = "form-msg"; }, 6000);
       }
+
+      // Reset button
+      if (btnLabel) btnLabel.textContent = "⚡ Send Message";
+      if (submitBtn) submitBtn.disabled = false;
+    });
+  }
+
+  /* ════════════════════════════════════
+     TOUCH — DISABLE 3D TILT ON MOBILE
+  ════════════════════════════════════ */
+  const isTouchDevice = () => window.matchMedia("(hover: none)").matches;
+  if (!isTouchDevice()) {
+    document.querySelectorAll(".pj-card, .ach-card, .an-card, .cmd-card").forEach(card => {
+      card.addEventListener("mousemove", (e) => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = `translateY(-8px) rotateX(${-y * 8}deg) rotateY(${x * 8}deg)`;
+        card.style.transition = "transform 0.1s ease";
+      });
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "";
+        card.style.transition = "transform 0.4s ease";
+      });
     });
   }
 
