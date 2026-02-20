@@ -4,6 +4,7 @@
 // ============================================================
 
 const express = require("express");
+app.use(express.json());
 const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
@@ -103,7 +104,7 @@ app.post("/api/contact", limiter, async (req, res) => {
 
     await new Message({ name: name.trim(), email: email.trim().toLowerCase(), subject: subject.trim(), message: message.trim(), ip: req.ip }).save();
     sendEmails({ name, email, subject, message }).catch(e => console.error("Email error:", e.message));
-    res.status(201).json({ success: true, message: "Message sent! ⚡" });
+    res.json({ success: true, message: "Message sent successfully" });
   } catch (err) {
     console.error(err);
     if (err.name === "ValidationError") return res.status(400).json({ success: false, message: Object.values(err.errors).map(e => e.message).join(" ") });
